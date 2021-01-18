@@ -54,6 +54,24 @@ short Parity(unsigned long long x) {
 }
 
 
+unsigned long long RightPropagate(unsigned long long x) {
+    // 1011000 -> 1011111 (since 1000 - 1 = 111)
+    return x | (x - 1);
+}
+
+
+unsigned long long ModPowerofTwo(unsigned long long x, unsigned long long d) {
+    // d needs to be a power of 2
+    return x & (d - 1);
+}
+
+bool TestPowerofTwo(unsigned long long x) {
+    return x && (!(x & (x - 1)));
+}
+
+
+
+
 int main(int argc, char* argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"x"};

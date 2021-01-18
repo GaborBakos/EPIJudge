@@ -1,7 +1,11 @@
 #include "test_framework/generic_test.h"
+
 long long SwapBits(long long x, int i, int j) {
-  // TODO - you fill in here.
-  return 0;
+    if (((x >> i) & 0x1) != ((x >> j) & 0x1)) {
+        long long bitmask = (1LL << i) | (1LL << j);
+        x ^= bitmask;
+    }
+    return x;
 }
 
 int main(int argc, char* argv[]) {

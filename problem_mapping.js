@@ -30,7 +30,7 @@ problem_mapping = {
         },
         "4.02 Swap bits": {
             "C++: swap_bits.cc": {
-                "passed": 0,
+                "passed": 10001,
                 "total": 10001
             },
             "Java: SwapBits.java": {
@@ -44,7 +44,7 @@ problem_mapping = {
         },
         "4.03 Reverse bits": {
             "C++: reverse_bits.cc": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             },
             "Java: ReverseBits.java": {
