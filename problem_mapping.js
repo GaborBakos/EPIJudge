@@ -114,7 +114,7 @@ problem_mapping = {
         },
         "4.08 Reverse digits": {
             "C++: reverse_digits.cc": {
-                "passed": 0,
+                "passed": 19952,
                 "total": 19952
             },
             "Java: ReverseDigits.java": {
@@ -128,7 +128,7 @@ problem_mapping = {
         },
         "4.09 Check if a decimal integer is a palindrome": {
             "C++: is_number_palindromic.cc": {
-                "passed": 0,
+                "passed": 20000,
                 "total": 20000
             },
             "Java: IsNumberPalindromic.java": {
@@ -142,7 +142,7 @@ problem_mapping = {
         },
         "4.10 Generate uniform random numbers": {
             "C++: uniform_random_number.cc": {
-                "passed": 0,
+                "passed": 7,
                 "total": 7
             },
             "Java: UniformRandomNumber.java": {
