@@ -3,8 +3,26 @@
 #include "test_framework/generic_test.h"
 using std::vector;
 vector<int> Multiply(vector<int> num1, vector<int> num2) {
-  // TODO - you fill in here.
-  return {};
+    const int sign = (num1.front() < 0) ^ (num2.front() < 0) ? -1 : 1;
+    num1.front() = abs(num1.front()), num2.front() = abs(num2.front());
+    vector<int> result(size(num1) + size(num2), 0);
+    for (int i = size(num1) - 1; i >= 0; --i) {
+        for (int j = size(num2) - 1; j >= 0; --j) {
+            result[i + j + 1] += num1[i] * num2[j];
+            result[i + j] += result[i + j + 1] / 10;
+            result[i + j + 1] %= 10;
+        }
+    }
+    // Remove leading zeros
+    // find if not will return the first non zero entry as a pointer, then we generate the vector from begin to end
+    result = {find_if_not(begin(result), end(result), [](int a) { return a == 0; }), end(result) };
+
+    if (empty(result)) {
+        return { 0 };
+    }
+    result.front() *= sign;
+    return result;
+
 }
 
 int main(int argc, char* argv[]) {

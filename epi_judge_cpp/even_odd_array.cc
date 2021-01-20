@@ -5,11 +5,41 @@
 #include "test_framework/test_failure.h"
 #include "test_framework/timed_executor.h"
 using std::vector;
+using std::swap;
+
+
+void EvenOdd_first(vector<int>* A_ptr) {
+    vector<int>& A = *A_ptr;
+    int next_even = 0, next_odd = size(A) - 1;
+    while (next_even < next_odd) {
+        if (A[next_even] % 2 == 0) {
+            next_even++;
+        }
+        else {
+            int tmp = A[next_even];
+            A[next_even] = A[next_odd];
+            A[next_odd] = tmp;
+            next_odd--;
+        }
+    }
+    return;
+}
+
 
 void EvenOdd(vector<int>* A_ptr) {
-  // TODO - you fill in here.
-  return;
+    vector<int>& A = *A_ptr;
+    int next_even = 0, next_odd = size(A) - 1;
+    while (next_even < next_odd) {
+        if (A[next_even] % 2 == 0) {
+            next_even++;
+        }
+        else {
+            swap(A[next_even], A[next_odd--]);
+        }
+    }
+    return;
 }
+
 void EvenOddWrapper(TimedExecutor& executor, vector<int> A) {
   std::multiset<int> before(begin(A), end(A));
 

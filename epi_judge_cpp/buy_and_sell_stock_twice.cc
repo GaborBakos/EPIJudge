@@ -2,15 +2,37 @@
 
 #include "test_framework/generic_test.h"
 using std::vector;
+
+
 double BuyAndSellStockTwice(const vector<double>& prices) {
-  // TODO - you fill in here.
-  return 0.0;
+    if (empty(prices)) {
+        return 0.0;
+    }
+    
+    double max_total_profit = 0;
+    vector<double> first_buy_sell_profits(size(prices), 0);
+    double min_price_so_far = std::numeric_limits<double>::max();
+
+    // Forward phase. FOr each day, we record the maximum profit if we sell on that day.
+    for (int i = 0; i < size(prices); i++) {
+        min_price_so_far = std::min(min_price_so_far, prices[i]);
+        max_total_profit = std::max(max_total_profit, prices[i] - min_price_so_far);
+        first_buy_sell_profits[i] = max_total_profit;
+    }
+
+    // Backward phase. For each day, find the maximum profit if we make the second buy on that day.
+    double max_price_so_far = std::numeric_limits<double>::min();
+    for (int i = size(prices) - 1; i > 0; i--) {
+        max_price_so_far = std::max(max_price_so_far, prices[i]);
+        max_total_profit = std::max(max_total_profit, max_price_so_far - prices[i] + first_buy_sell_profits[i - 1]);
+    }
+    return max_total_profit;
 }
 
 int main(int argc, char* argv[]) {
-  std::vector<std::string> args{argv + 1, argv + argc};
-  std::vector<std::string> param_names{"prices"};
-  return GenericTestMain(args, "buy_and_sell_stock_twice.cc",
-                         "buy_and_sell_stock_twice.tsv", &BuyAndSellStockTwice,
-                         DefaultComparator{}, param_names);
+    std::vector<std::string> args{argv + 1, argv + argc};
+    std::vector<std::string> param_names{"prices"};
+    return GenericTestMain(args, "buy_and_sell_stock_twice.cc",
+                            "buy_and_sell_stock_twice.tsv", &BuyAndSellStockTwice,
+                            DefaultComparator{}, param_names);
 }

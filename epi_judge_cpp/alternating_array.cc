@@ -7,9 +7,17 @@
 #include "test_framework/timed_executor.h"
 using std::vector;
 void Rearrange(vector<int>* A_ptr) {
-  // TODO - you fill in here.
-  return;
+    vector<int>& A = *A_ptr;
+
+    for (int i = 1; i < size(A); i++) {
+        if ((!(i % 2) && A[i - 1] < A[i]) || ((i % 2) && A[i - 1] > A[i])) {
+            std::swap(A[i - 1], A[i]);
+        }
+    }
+    return ;
 }
+
+
 void CheckAnswer(const vector<int>& A) {
   for (int i = 0; i < A.size(); ++i) {
     if (i % 2) {
